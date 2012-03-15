@@ -241,6 +241,8 @@ npt_process_chunks_simple(npt_png_chunk** chunks)
 			memcpy(chunk->_data, deflatedbuf, chunk->_size);
 			chunk->_crc = (npt_uint32_t)npt_crc((npt_byte_t[4]){0x49, 0x44, 0x41, 0x54}, chunk->_data, chunk->_size);
 			
+            deflateEnd(&defstrm);
+            
 			free(deflatedbuf);
 			free(inflatedbuf);
 			break;
